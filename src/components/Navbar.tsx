@@ -11,6 +11,10 @@ export const Navbar = () => {
     return location.pathname.startsWith(path);
   };
 
+  const peopleLink = location.pathname.startsWith('/people')
+    ? `/people${location.search}`
+    : '/people';
+
   return (
     <nav
       data-cy="nav"
@@ -29,7 +33,7 @@ export const Navbar = () => {
 
           <Link
             className={`navbar-item ${isActive('/people') ? 'has-background-grey-lighter' : ''}`}
-            to="/people"
+            to={peopleLink}
           >
             People
           </Link>

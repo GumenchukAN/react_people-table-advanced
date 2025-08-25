@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Person } from '../types';
 
 type Props = {
@@ -8,6 +8,7 @@ type Props = {
 };
 
 export const PersonLink: React.FC<Props> = ({ name, people }) => {
+  const location = useLocation();
   const person = people.find(p => p.name === name);
 
   if (!person) {
@@ -18,7 +19,7 @@ export const PersonLink: React.FC<Props> = ({ name, people }) => {
 
   return (
     <Link
-      to={`/people/${person.slug}`}
+      to={`/people/${person.slug}${location.search}`}
       className={`${isFemale ? 'has-text-danger' : ''}`}
     >
       {name}
